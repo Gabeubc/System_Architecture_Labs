@@ -1,0 +1,136 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         
+    3 00000000                 AREA             asm_functions, CODE, READONLY
+    4 00000000                 EXPORT           ASM_funct
+    5 00000000                 EXPORT           CHECK_SQUARE
+    6 00000000                 EXPORT           MY_DIVISION
+    7 00000000                 IMPORT           __aeabi_fdiv
+    8 00000000                 IMPORT           _fflt
+    9 00000000         
+   10 00000000         
+   11 00000000         ASM_funct
+   12 00000000         ; save current SP for a faster access 
+   13 00000000         ; to parameters in the stack
+   14 00000000 46EC            MOV              r12, sp
+   15 00000002         ; save volatile registers
+   16 00000002 E92D 4DF0       STMFD            sp!,{r4-r8,r10-r11,lr}
+   17 00000006         ; extract argument 4 and 5 into R4 and R5
+   18 00000006 F8DC 4000       LDR              r4, [r12]
+   19 0000000A F8DC 5004       LDR              r5, [r12,#4]
+   20 0000000E         
+   21 0000000E 4425            add              r5, r4, r5
+   22 00000010         ; setup a value for R0 to return
+   23 00000010         
+   24 00000010 4628            MOV              r0, r5
+   25 00000012         ; restore volatile registers
+   26 00000012 E8BD 8DF0       LDMFD            sp!,{r4-r8,r10-r11,pc}
+   27 00000016         
+   28 00000016         
+   29 00000016         
+   30 00000016         CHECK_SQUARE
+   31 00000016         
+   32 00000016 46EC            MOV              R12, SP
+   33 00000018 B500            STMFD            SP!, {LR}
+   34 0000001A FB00 F000       MUL              R0, R0, R0
+   35 0000001E FB01 F101       MUL              R1, R1, R1
+   36 00000022 FB02 F202       MUL              R2, R2, R2
+   37 00000026 4408            ADD              R0, R0, R1
+   38 00000028 4290            CMP              R0, R2
+   39 0000002A BF08 2001       MOVEQ            R0, #1
+   40 0000002E BFB8 2001       MOVLT            R0, #1
+   41 00000032 BFC8 2000       MOVGT            R0, #0
+   42 00000036 BD00            LDMFD            SP!, {PC}
+   43 00000038         
+   44 00000038         
+   45 00000038         MY_DIVISION
+   46 00000038         
+   47 00000038 46EC            MOV              R12, SP
+   48 0000003A B5F0            STMFD            SP!, {R4-R5, R6-R7,LR}
+   49 0000003C F7FF FFFE       BL               __aeabi_fdiv
+   50 00000040 BDF0            LDMFD            SP!, {R4-R5, R6-R7,PC}
+   51 00000042         
+   52 00000042         
+   53 00000042         
+   54 00000042         
+   55 00000042         
+   56 00000042                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --depend=.\asm_funct.d -o.\asm_fun
+ct.o -I"C:\users\youbissi\Local Settings\Application Data\Arm\Packs\Keil\LPC170
+0_DFP\2.7.1\Device\Include" -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+SETA 1" --predefine="__UVISION_VERSION SETA 537" --predefine="LPC175x_6x SETA 1
+" --list=.\asm_funct.lst ASM_funct.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ASM_funct 00000000
+
+Symbol: ASM_funct
+   Definitions
+      At line 11 in file ASM_funct.s
+   Uses
+      At line 4 in file ASM_funct.s
+Comment: ASM_funct used once
+CHECK_SQUARE 00000016
+
+Symbol: CHECK_SQUARE
+   Definitions
+      At line 30 in file ASM_funct.s
+   Uses
+      At line 5 in file ASM_funct.s
+Comment: CHECK_SQUARE used once
+MY_DIVISION 00000038
+
+Symbol: MY_DIVISION
+   Definitions
+      At line 45 in file ASM_funct.s
+   Uses
+      At line 6 in file ASM_funct.s
+Comment: MY_DIVISION used once
+asm_functions 00000000
+
+Symbol: asm_functions
+   Definitions
+      At line 3 in file ASM_funct.s
+   Uses
+      None
+Comment: asm_functions unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+__aeabi_fdiv 00000000
+
+Symbol: __aeabi_fdiv
+   Definitions
+      At line 7 in file ASM_funct.s
+   Uses
+      At line 49 in file ASM_funct.s
+Comment: __aeabi_fdiv used once
+_fflt 00000000
+
+Symbol: _fflt
+   Definitions
+      At line 8 in file ASM_funct.s
+   Uses
+      None
+Comment: _fflt unused
+2 symbols
+339 symbols in table

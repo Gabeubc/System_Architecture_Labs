@@ -1,0 +1,3 @@
+Dependencies for Project 'ASM_template', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6180000::V6.18::ARMCLANG
+F (.\startup.s)(0x63812A39)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IDevice\Include--pd "__UVISION_VERSION SETA 537"--list .\startup.lst--xref -o .\startup.o--depend .\startup.d)

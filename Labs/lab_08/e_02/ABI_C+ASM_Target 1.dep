@@ -1,0 +1,9 @@
+Dependencies for Project 'ABI_C+ASM', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6180000::V6.18::ARMCLANG
+F (.\startup_LPC17xx.s)(0x6393991C)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g-I"C:\users\youbissi\Local Settings\Application Data\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include"-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 537"--pd "LPC175x_6x SETA 1"--list .\startup_lpc17xx.lst--xref -o .\startup_lpc17xx.o--depend .\startup_lpc17xx.d)
+F (.\main.c)(0x6393984A)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -fno-function-sections-I"C:/users/youbissi/Local Settings/Application Data/Arm/Packs/Keil/LPC1700_DFP/2.7.1/Device/Include"-IC:/Keil_v5/ARM/CMSIS/Include-D__UVISION_VERSION="537" -DLPC175x_6x-o ./main.o -MD)
+I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x6252C346)
+I (C:\Keil_v5\ARM\ARMCLANG\include\rt_fp.h)(0x6252C348)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6252C346)
+F (.\ASM_funct.s)(0x63932933)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g-I"C:\users\youbissi\Local Settings\Application Data\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include"-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 537"--pd "LPC175x_6x SETA 1"--list .\asm_funct.lst--xref -o .\asm_funct.o--depend .\asm_funct.d)
+F (.\ASM_data.s)(0x6393977D)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g-I"C:\users\youbissi\Local Settings\Application Data\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include"-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 537"--pd "LPC175x_6x SETA 1"--list .\asm_data.lst--xref -o .\asm_data.o--depend .\asm_data.d)
