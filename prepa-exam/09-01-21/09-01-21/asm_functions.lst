@@ -1,0 +1,105 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             asm_functions, CODE, READONLY
+    2 00000000                 EXPORT           count_negative_and_odd
+    3 00000000         
+    4 00000000         count_negative_and_odd
+    5 00000000         ; save current SP for a faster access 
+    6 00000000         ; to parameters in the stack
+    7 00000000 46EC            MOV              r12, sp
+    8 00000002         ; save volatile registers
+    9 00000002 E92D 4DF0       STMFD            sp!,{r4-r8,r10-r11,lr}
+   10 00000006 F04F 0400       mov              r4, #0
+   11 0000000A F04F 0600       mov              r6, #0
+   12 0000000E F04F 0700       mov              r7, #0
+   13 00000012         
+   14 00000012         
+   15 00000012         find_odd_and_negative
+   16 00000012 5905            ldr              r5, [r0, r4]
+   17 00000014 2D00            cmp              r5, #0
+   18 00000016 DB07            blt              check_if_odd
+   19 00000018 F104 0404       add              r4, r4, #4
+   20 0000001C F106 0601       add              r6, r6, #1
+   21 00000020 428E            cmp              r6, r1
+   22 00000022 DBF6            blt              find_odd_and_negative
+   23 00000024 BF00            nop
+   24 00000026 E00A            b                end_find_odd_and_negative
+   25 00000028         
+   26 00000028         check_if_odd
+   27 00000028 1CAD            adds             r5, r5, #2
+   28 0000002A DBFD            blt              check_if_odd
+   29 0000002C 2D00            cmp              r5, #0
+   30 0000002E BF08 1C7F       addeq            r7, r7, #1
+   31 00000032 F104 0404       add              r4, r4, #4
+   32 00000036 F106 0601       add              r6, r6, #1
+   33 0000003A 428E            cmp              r6, r1
+   34 0000003C DBE9            blt              find_odd_and_negative
+   35 0000003E         
+   36 0000003E         end_find_odd_and_negative
+   37 0000003E 4638            mov              r0, r7
+   38 00000040         
+   39 00000040         ; restore volatile registers
+   40 00000040 E8BD 8DF0       LDMFD            sp!,{r4-r8,r10-r11,pc}
+   41 00000044         
+   42 00000044                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\asm_functions.d -o.\asm_functions.o -I.\RTE\_Target_1 -IC:\Users
+\youbi\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\yo
+ubi\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="
+__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA
+ 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\asm_fun
+ctions.lst ASM_functions.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+asm_functions 00000000
+
+Symbol: asm_functions
+   Definitions
+      At line 1 in file ASM_functions.s
+   Uses
+      None
+Comment: asm_functions unused
+check_if_odd 00000028
+
+Symbol: check_if_odd
+   Definitions
+      At line 26 in file ASM_functions.s
+   Uses
+      At line 18 in file ASM_functions.s
+      At line 28 in file ASM_functions.s
+
+count_negative_and_odd 00000000
+
+Symbol: count_negative_and_odd
+   Definitions
+      At line 4 in file ASM_functions.s
+   Uses
+      At line 2 in file ASM_functions.s
+Comment: count_negative_and_odd used once
+end_find_odd_and_negative 0000003E
+
+Symbol: end_find_odd_and_negative
+   Definitions
+      At line 36 in file ASM_functions.s
+   Uses
+      At line 24 in file ASM_functions.s
+Comment: end_find_odd_and_negative used once
+find_odd_and_negative 00000012
+
+Symbol: find_odd_and_negative
+   Definitions
+      At line 15 in file ASM_functions.s
+   Uses
+      At line 22 in file ASM_functions.s
+      At line 34 in file ASM_functions.s
+
+5 symbols
+339 symbols in table
