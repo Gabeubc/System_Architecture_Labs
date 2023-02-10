@@ -1,0 +1,100 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             asm_functions, CODE, READONLY
+    2 00000000                 EXPORT           get_and_sort
+    3 00000000         
+    4 00000000         get_and_sort
+    5 00000000         ; save current SP for a faster access 
+    6 00000000         ; to parameters in the stack
+    7 00000000 46EC            MOV              r12, sp
+    8 00000002         ; save volatile registers
+    9 00000002 E92D 4DF0       STMFD            sp!,{r4-r8,r10-r11,lr}
+   10 00000006 4614            mov              r4, r2
+   11 00000008 F04F 0500       mov              r5, #0      ; j=0
+   12 0000000C F04F 0600       mov              r6, #0      ; i=0
+   13 00000010 5481            strb             r1, [r0, r2]
+   14 00000012 F102 0201       add              r2, r2, #1
+   15 00000016         
+   16 00000016         order
+   17 00000016         
+   18 00000016 5D87            ldrb             r7, [r0,r6] ; temp max
+   19 00000018 4635            mov              r5, r6
+   20 0000001A         
+   21 0000001A         max
+   22 0000001A F810 8005       ldrb             r8, [r0, r5] ; get VET[j]
+   23 0000001E 4547            cmp              r7, r8
+   24 00000020 BFBC F108 
+              0700             addlt            r7, r8, #0  ; new max
+   25 00000026 F105 0A00       addlt            r10, r5, #0 ; save max pos
+   26 0000002A F105 0501       add              r5, r5, #1
+   27 0000002E 4295            cmp              r5, r2
+   28 00000030 DBF3            blt              max
+   29 00000032         
+   30 00000032 F04F 0500       mov              r5, #0
+   31 00000036 F810 9006       ldrb             r9, [r0, r6] ; k=VETT[i]
+   32 0000003A 5587            strb             r7, [r0, r6] ; VETT[i] = max
+   33 0000003C F800 900A       strb             r9, [r0, r10] 
+                                                            ; VETT[pos max] = k
+                                                            
+   34 00000040 F106 0601       add              r6, r6, #1
+   35 00000044 4296            cmp              r6, r2
+   36 00000046 DBE6            blt              order
+   37 00000048         
+   38 00000048         
+   39 00000048 4608            mov              r0, r1
+   40 0000004A         
+   41 0000004A         ; restore volatile registers
+   42 0000004A E8BD 8DF0       LDMFD            sp!,{r4-r8,r10-r11,pc}
+   43 0000004E         
+   44 0000004E                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\asm_functions.d -o.\asm_functions.o -I.\RTE\_Target_1 -IC:\Users
+\youbi\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\yo
+ubi\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="
+__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA
+ 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\asm_fun
+ctions.lst ASM_functions.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+asm_functions 00000000
+
+Symbol: asm_functions
+   Definitions
+      At line 1 in file ASM_functions.s
+   Uses
+      None
+Comment: asm_functions unused
+get_and_sort 00000000
+
+Symbol: get_and_sort
+   Definitions
+      At line 4 in file ASM_functions.s
+   Uses
+      At line 2 in file ASM_functions.s
+Comment: get_and_sort used once
+max 0000001A
+
+Symbol: max
+   Definitions
+      At line 21 in file ASM_functions.s
+   Uses
+      At line 28 in file ASM_functions.s
+Comment: max used once
+order 00000016
+
+Symbol: order
+   Definitions
+      At line 16 in file ASM_functions.s
+   Uses
+      At line 36 in file ASM_functions.s
+Comment: order used once
+4 symbols
+338 symbols in table
