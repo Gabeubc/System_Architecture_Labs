@@ -1,0 +1,60 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         ; DEFINE CONST CHAR N = 5 
+    3 00000000         ;    AREA asm_dat, DATA, READONLY 
+    4 00000000         ;    EXPORT  N
+    5 00000000         
+    6 00000000         ;N DCB 40
+    7 00000000         
+    8 00000000         ;    END 
+    9 00000000         
+   10 00000000         
+   11 00000000         ; DEFINE DATA_IN[N]
+   12 00000000                 AREA             asm_data, DATA, READWRITE
+   13 00000000         ;                EXPORT  DATA_IN
+   14 00000000                 EXPORT           BEST_3
+   15 00000000         
+   16 00000000 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 BEST_3  space            12
+   17 0000000C         
+   18 0000000C         ;DATA_IN         space N
+   19 0000000C         
+   20 0000000C                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\asm_data.d -o.\asm_data.o -I.\RTE\_Target_1 -IC:\Users\youbi\App
+Data\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\youbi\AppDat
+a\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="__EVAL SET
+A 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --pred
+efine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\asm_data.lst ASM_
+DATA.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BEST_3 00000000
+
+Symbol: BEST_3
+   Definitions
+      At line 16 in file ASM_DATA.s
+   Uses
+      At line 14 in file ASM_DATA.s
+Comment: BEST_3 used once
+asm_data 00000000
+
+Symbol: asm_data
+   Definitions
+      At line 12 in file ASM_DATA.s
+   Uses
+      None
+Comment: asm_data unused
+2 symbols
+336 symbols in table

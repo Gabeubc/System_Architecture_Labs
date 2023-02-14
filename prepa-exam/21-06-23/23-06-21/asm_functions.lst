@@ -1,0 +1,122 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             asm_functions, CODE, READONLY
+    2 00000000                 EXPORT           sopra_la_media
+    3 00000000         
+    4 00000000         sopra_la_media
+    5 00000000         ; save current SP for a faster access 
+    6 00000000         ; to parameters in the stack
+    7 00000000 46EC            MOV              r12, sp
+    8 00000002         ; save volatile registers
+    9 00000002 E92D 4DF0       STMFD            sp!,{r4-r8,r10-r11,lr}
+   10 00000006 460C            mov              r4, r1
+   11 00000008 F04F 0500       mov              r5, #0
+   12 0000000C F04F 0600       mov              r6, #0
+   13 00000010         
+   14 00000010         sum_all_elt_vector
+   15 00000010 5D87            ldrb             r7, [r0, r6]
+   16 00000012 443D            add              r5, r5, r7
+   17 00000014 F106 0601       add              r6, r6, #1
+   18 00000018 428E            cmp              r6, r1
+   19 0000001A DBF9            blt              sum_all_elt_vector ;r5 is sum o
+                                                            f all elt element i
+                                                            n the unsigned char
+                                                             vett
+   20 0000001C         
+   21 0000001C F04F 0600       mov              r6, #0
+   22 00000020         
+   23 00000020         division
+   24 00000020 1A6D            subs             r5, r5, r1
+   25 00000022 BFC8 1C76       addgt            r6, r6, #1
+   26 00000026 DCFB            bgt              division    ; r6 is the result 
+                                                            of the division of 
+                                                            the sum
+   27 00000028         
+   28 00000028 F04F 0500       mov              r5, #0
+   29 0000002C F04F 0800       mov              r8, #0
+   30 00000030         
+   31 00000030         cmp_all_elt_vector_with_one_value    ;the value here is 
+                                                            r6
+   32 00000030 7807            ldrb             r7, [r0]
+   33 00000032 42BE            cmp              r6, r7
+   34 00000034 BFB8 F108 
+              0801             addlt            r8, r8, #1
+   35 0000003A F100 0001       add              r0, r0, #1
+   36 0000003E F105 0501       add              r5, r5, #1
+   37 00000042 428D            cmp              r5, r1
+   38 00000044 DBF4            blt              cmp_all_elt_vector_with_one_val
+ue 
+                                                            ;r5 is sum    
+   39 00000046         
+   40 00000046         
+   41 00000046 4640            mov              r0, r8
+   42 00000048         
+   43 00000048         ; restore volatile registers
+   44 00000048 E8BD 8DF0       LDMFD            sp!,{r4-r8,r10-r11,pc}
+   45 0000004C         
+   46 0000004C                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\asm_functions.d -o.\asm_functions.o -I.\RTE\_Target_1 -IC:\Users
+\youbi\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\yo
+ubi\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include --predefine="
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA
+ 1" --predefine="LPC175x_6x SETA 1" --predefine="_RTE_ SETA 1" --list=.\asm_fun
+ctions.lst ASM_functions.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+asm_functions 00000000
+
+Symbol: asm_functions
+   Definitions
+      At line 1 in file ASM_functions.s
+   Uses
+      None
+Comment: asm_functions unused
+cmp_all_elt_vector_with_one_value 00000030
+
+Symbol: cmp_all_elt_vector_with_one_value
+   Definitions
+      At line 31 in file ASM_functions.s
+   Uses
+      At line 38 in file ASM_functions.s
+Comment: cmp_all_elt_vector_with_one_value used once
+division 00000020
+
+Symbol: division
+   Definitions
+      At line 23 in file ASM_functions.s
+   Uses
+      At line 26 in file ASM_functions.s
+Comment: division used once
+sopra_la_media 00000000
+
+Symbol: sopra_la_media
+   Definitions
+      At line 4 in file ASM_functions.s
+   Uses
+      At line 2 in file ASM_functions.s
+Comment: sopra_la_media used once
+sum_all_elt_vector 00000010
+
+Symbol: sum_all_elt_vector
+   Definitions
+      At line 14 in file ASM_functions.s
+   Uses
+      At line 19 in file ASM_functions.s
+Comment: sum_all_elt_vector used once
+5 symbols
+339 symbols in table
